@@ -1,0 +1,12 @@
+{
+    "prefix": "^",
+    "token": "",
+    "db": "sqlitedb.db",
+    "default": {
+        "guilds_settings":{
+            "timeout": 60,
+            "channel": null,
+            "message": "Hey! {user} have a birthday today. We need to celebrate it!"
+        }
+    }
+}
