@@ -1,3 +1,4 @@
+from cmath import e
 import datetime
 import json
 import discord
@@ -23,16 +24,15 @@ async def on_ready():
 @bot.event
 async def on_guild_join(guild: discord.Guild):
     egg = json_data["default"]["guilds_settings"]
-    h.do_to_database("INSERT INTO guilds_settings VALUES (?, ?, ?, ?)", guild.id, egg["channel"], egg["message"], False)
-    del egg
+    k = map(int, egg['celebrate_time'].split(":"))
+    h.do_to_database("INSERT INTO guilds_settings VALUES (?, ?, ?, ?)", guild.id, egg["channel"], egg["message"], datetime.time(hour=k[0], minute=k[1]), False)
+    del egg, k
 
 @bot.command()
 async def set_birthday(ctx: commands.Context, date: str, memb: discord.Member = None):
     if memb == None: memb = ctx.author
-    birt = datetime.date()
-    birt.day, birt.month, *_ = map(int, date.split("."))
-    print(birt)
-    h.do_to_database("INSERT INTO users VALUES (?, ?, ?)", memb.id, ctx.guild.id, birt)
+    k = map(int, date.split("."))
+    h.do_to_database("INSERT INTO users VALUES (?, ?, ?)", memb.id, ctx.guild.id, datetime.date(month="", day=""))
 
 @bot.command()
 @commands.has_permissions(administrator=True)
@@ -62,6 +62,9 @@ async def setting(ctx: commands.Context):
     if reaction.emoji == "🕛":
         now = datetime.datetime.time(datetime.datetime.now())
         await ctx.send(f"Please, enter the time(hour:minute format) in the bot's timezone. Now is {now.hour}:{now.minute}")
-        
+        mess = bot.wait_for('message', check=lambda message: message.author == ctx.author)
+        t = datetime.time()
+        t.hour, t.minute = map(int, mess.content.split(":"))
+        h.do_to_database("UPDATE guilds_settings SET clebrate_time=? WHERE guild_id=?", t, ctx.guild.id)
 
 bot.run(json_data['token'])

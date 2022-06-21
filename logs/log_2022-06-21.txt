@@ -1,0 +1,10 @@
+
+[ERROR][2022-06-21 11:16:15]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:16]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:17]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:18]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:19]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:20]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:21]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:22]: table guilds_settings has 5 columns but 4 values were supplied
+[ERROR][2022-06-21 11:16:23]: table guilds_settings has 5 columns but 4 values were supplied
